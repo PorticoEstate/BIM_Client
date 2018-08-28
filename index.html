@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Sigurd: test på oppkopling til BimServer</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="module">
+			import BimServerClient from './js/bimserver/bimserverclient.js';
+			var api = new BimServerClient("http://localhost:8082/");
+			api.init((client, version) => {
+			console.log(version.version);
+			});
+			window.BimServerClient = api;
+		</script>
+
+		<script src="js/bimclient/list_projects.js"></script>
+	</head>
+	<body>
+		<h1>BIMserver</h1>
+		<button id="loadFromOtherBimServer">Load from server</button>
+		<div id="other" style="display: none">
+			<input id="address"/>
+			<input id="username"/>
+			<input id="password" type="password"/>
+			<button id="loadProjectsBtn">Load projects</button>
+			<div id="otherProjects"></div>
+		</div>
+	</body>
+</html>
